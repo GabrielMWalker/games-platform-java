@@ -10,16 +10,29 @@ public class Game {
     private String name;
     private String description;
     private Date releaseDate;
+    private Date expire_date;
     private float price;
-
-    public Game(int id, String name, String description, Date releaseDate, float price, int publisher_id, String publisher_name) {
+    private int price_discount;
+    
+    public Game(int id, String name, String description, Date releaseDate, float price, int publisher_id, String publisher_name,int price_discount, Date expire_date) {
         this.id = id;
         this.publisher_id = publisher_id;
         this.publisher_name = publisher_name;
         this.name = name;
         this.description = description;
         this.releaseDate = releaseDate;
-        this.price = price;
+        this.price = getGameDiscount(price, price_discount);
+        this.expire_date = expire_date;
+        this.price_discount = price_discount;
+        
+    }
+    
+    private float getGameDiscount(float gamePrice, int gameDiscount){
+        Integer discount = gameDiscount;
+        if(discount != null){
+            return gamePrice;
+        }
+        return gamePrice - (gamePrice * (gameDiscount/100));
     }
     
     /**
@@ -129,4 +142,21 @@ public class Game {
     public String getPublisherName() {
         return publisher_name;
     }
+
+    public Date getExpire_date() {
+        return expire_date;
+    }
+
+    public void setExpire_date(Date expire_date) {
+        this.expire_date = expire_date;
+    }
+
+    public float getPrice_discount() {
+        return price_discount;
+    }
+
+    public void setPrice_discount(int price_discount) {
+        this.price_discount = price_discount;
+    }   
+    
 }

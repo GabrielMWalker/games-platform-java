@@ -1,30 +1,29 @@
 package games.platform.gui;
 
 import games.platform.connection.DataBase;
-import games.platform.crud.gui.GameForm;
-import games.platform.dbModels.Games;
+import games.platform.crud.gui.ClientForm;
+import games.platform.dbModels.Clients;
 import games.platform.dbModels.ResultSetTableModel;
 import games.platform.logger.AppLogger;
-import games.platform.models.Game;
+import games.platform.models.Client;
 import games.platform.utils.DbGlobal;
 import games.platform.utils.LoggerGlobal;
 import java.sql.SQLException;
-import java.util.Date;
 import javax.swing.JDesktopPane;
 
-public class GamesListForm extends javax.swing.JInternalFrame {
+public class DiscountListForm extends javax.swing.JInternalFrame {
 
     static private ResultSetTableModel tableModel;
     private JDesktopPane mainPanel;
 
-    public GamesListForm(JDesktopPane mainPanel) {
+    public DiscountListForm(JDesktopPane mainPanel) {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.mainPanel = mainPanel;
         try {
             DataBase db = DbGlobal.getDb();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
-            tableModel.setQuery(Games.getGames());
+            tableModel.setQuery(Clients.getClients());
             table.createDefaultColumnsFromModel();
         } catch (IllegalStateException | SQLException | ClassNotFoundException e) {
             LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
@@ -43,32 +42,32 @@ public class GamesListForm extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        removeGameButton = new javax.swing.JButton();
-        editGameButton = new javax.swing.JButton();
+        editClientButton = new javax.swing.JButton();
+        removeClientButton = new javax.swing.JButton();
 
         setBorder(null);
         setMaximizable(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(850, 509));
 
-        jLabel3.setText("Lista de Jogos disponíveis");
+        jLabel3.setText("Lista de Descontos disponíveis");
 
         table.setAutoCreateColumnsFromModel(false);
         table.setModel(tableModel);
         table.setName(""); // NOI18N
         jScrollPane1.setViewportView(table);
 
-        removeGameButton.setText("Remover");
-        removeGameButton.addActionListener(new java.awt.event.ActionListener() {
+        editClientButton.setText("Editar");
+        editClientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeGameButtonActionPerformed(evt);
+                editClientButtonActionPerformed(evt);
             }
         });
 
-        editGameButton.setText("Editar");
-        editGameButton.addActionListener(new java.awt.event.ActionListener() {
+        removeClientButton.setText("Remover");
+        removeClientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editGameButtonActionPerformed(evt);
+                removeClientButtonActionPerformed(evt);
             }
         });
 
@@ -81,22 +80,21 @@ public class GamesListForm extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(removeGameButton)
+                        .addComponent(removeClientButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editGameButton)))
+                        .addComponent(editClientButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(editGameButton)
-                        .addComponent(removeGameButton))
-                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(editClientButton)
+                    .addComponent(removeClientButton))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                 .addContainerGap())
@@ -105,48 +103,42 @@ public class GamesListForm extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private Game getGameBySelectedRow(int row) {
-        int gameSelectedId = (int) table.getValueAt(row, 0);
-        String gameSelectedName = (String) table.getValueAt(row, 1);
-        String gameSelectedDescription = (String) table.getValueAt(row, 2);
-        Date gameSelectedReleaseDate = (Date) table.getValueAt(row, 3);
-        float gameSelectedPrice = (float) table.getValueAt(row, 4);
-        int gameSelectedPublisherId = (int) table.getValueAt(row, 5);
-        String gameSelectedPublisherName = (String) table.getValueAt(row, 6);
-        int gameSelectedPriceDiscount = (int) table.getValueAt(row, 7);
-        Date gameSelectedExpireDiscount = (Date) table.getValueAt(row, 8);
-        return new Game(gameSelectedId, gameSelectedName, gameSelectedDescription, gameSelectedReleaseDate, gameSelectedPrice, gameSelectedPublisherId, gameSelectedPublisherName, gameSelectedPriceDiscount, gameSelectedExpireDiscount);
+    private Client getClientBySelectedRow(int row) {
+        int clientSelectedId = (int) table.getValueAt(row, 0);
+        String clientSelectedName = (String) table.getValueAt(row, 1);
+        float clientSelectedBalance = (float) table.getValueAt(row, 2);
+        return new Client(clientSelectedId, clientSelectedName, clientSelectedBalance);
     }
 
-    private void removeGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeGameButtonActionPerformed
+    private void editClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editClientButtonActionPerformed
         int selectedRow = table.getSelectedRow();
         if (selectedRow >= 0) {
-            Game gameToRemove = getGameBySelectedRow(selectedRow);
-            games.platform.crud.models.Game.removeGame(gameToRemove, DbGlobal.getDb().getConnection());
+            ClientForm clientUpdateForm = new ClientForm(getClientBySelectedRow(selectedRow), false);
+            mainPanel.add(clientUpdateForm);
+            mainPanel.setVisible(true);
+            clientUpdateForm.setVisible(true);
+        }
+    }//GEN-LAST:event_editClientButtonActionPerformed
+
+    private void removeClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClientButtonActionPerformed
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow >= 0) {
+            Client clientToRemove = getClientBySelectedRow(selectedRow);
+            games.platform.crud.models.Client.removeClient(clientToRemove, DbGlobal.getDb().getConnection());
             try {
-                tableModel.setQuery(Games.getGames());
+                tableModel.setQuery(Clients.getClients());
             } catch (SQLException | IllegalStateException ex) {
                 LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + ex.getMessage());
             }
         }
-    }//GEN-LAST:event_removeGameButtonActionPerformed
-
-    private void editGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGameButtonActionPerformed
-        int selectedRow = table.getSelectedRow();
-        if (selectedRow >= 0) {
-            GameForm gameUpdateForm = new GameForm(getGameBySelectedRow(selectedRow), false);
-            mainPanel.add(gameUpdateForm);
-            mainPanel.setVisible(true);
-            gameUpdateForm.setVisible(true);
-        }
-    }//GEN-LAST:event_editGameButtonActionPerformed
+    }//GEN-LAST:event_removeClientButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton editGameButton;
+    private javax.swing.JButton editClientButton;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton removeGameButton;
+    private javax.swing.JButton removeClientButton;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

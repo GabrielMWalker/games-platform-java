@@ -35,7 +35,9 @@ public class GamesFitter {
                         (Date) resultSet.getObject(4),
                         (float) resultSet.getObject(5), 
                         (int) resultSet.getObject(6),
-                        (String) resultSet.getObject(7)
+                        (String) resultSet.getObject(7),
+                        (int) resultSet.getObject(8),
+                        (Date) resultSet.getObject(9)
                 ));
             }
             

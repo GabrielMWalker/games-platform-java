@@ -10,6 +10,7 @@ import games.platform.utils.DbGlobal;
 import games.platform.xml.gui.AddCashFromXMLForm;
 import games.platform.utils.LoggerGlobal;
 import games.platform.xml.gui.BuysToXMLForm;
+import java.util.Date;
 
 public class MainWindowForm extends javax.swing.JFrame {
 
@@ -220,7 +221,7 @@ public class MainWindowForm extends javax.swing.JFrame {
     }//GEN-LAST:event_createPublisherMenuItemActionPerformed
 
     private void gameCreateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameCreateMenuItemActionPerformed
-        GameForm gameForm = new GameForm(new Game(0, "", "", null, 0, 0, ""), true);
+        GameForm gameForm = new GameForm(new Game(0, "", "", null, 0, 0, "", 0, new Date()), true);
         mainPanel.add(gameForm);
         mainPanel.setVisible(true);
         gameForm.setVisible(true);

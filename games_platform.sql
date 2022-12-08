@@ -36,6 +36,15 @@ create table buy (
     CONSTRAINT FK_game FOREIGN KEY (game_id) REFERENCES game (id)
 );
 
+create table discount (
+	id INT NOT NULL	auto_increment,
+	game_id int,
+    expire_date Date,
+    price_discount float,
+    PRIMARY KEY(id),
+    FOREIGN KEY (game_id) REFERENCES game(id)
+);
+
 INSERT INTO client (id, name, balance)
 VALUES
   (1,"Meghan Howell",1476),
@@ -94,3 +103,49 @@ VALUES
   (23,"Hendrerit Industries","feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus","2018-03-09",267,3),
   (24,"Iaculis Quis LLP","orci lacus vestibulum lorem, sit amet","2018-03-20",115,3),
   (25,"Interdum Enim Non Corp.","Integer aliquam adipiscing lacus. Ut nec urna et","2022-01-09",44,4);
+  
+  INSERT INTO discount (game_id,expire_date,price_discount)
+VALUES
+  (1,current_date(),0),
+  (2,current_date(),0),
+  (3,current_date(),0),
+  (4,current_date(),0),
+  (5,current_date(),0),
+  (6,current_date(),0),
+  (7,current_date(),0),
+  (8,current_date(),0),
+  (9,current_date(),0),
+  (10,current_date(),0),
+  (11,current_date(),0),
+  (12,current_date(),0),
+  (13,current_date(),0),
+  (14,current_date(),0),  
+  (15,current_date(),0),
+  (16,current_date(),0),
+  (17,current_date(),0),
+  (18,current_date(),0),
+  (19,current_date(),0),
+  (20,current_date(),0),
+  (21,current_date(),0),
+  (22,current_date(),0),
+  (23,current_date(),0),
+  (24,current_date(),0),
+  (25,current_date(),0);
+
+  
+ INSERT INTO discount (game_id,expire_date,price_discount)
+VALUES
+  (6,"2022-12-24",0),
+  (24,"2022-12-14",8),
+  (5,"2022-12-19",21),
+  (4,"2022-12-12",35),
+  (13,"2022-12-26",58),
+  (8,"2022-12-17",59),
+  (17,"2022-12-18",10),
+  (16,"2022-12-10",11),
+  (11,"2022-12-30",77),
+  (18,"2022-12-25",57),
+  (22,"2022-12-26",65),
+  (21,"2022-12-21",13),
+  (23,"2022-12-30",74),
+  (10,"2022-12-29",36);

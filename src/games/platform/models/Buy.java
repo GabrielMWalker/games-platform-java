@@ -1,5 +1,7 @@
 package games.platform.models;
 
+import java.util.Date;
+
 public class Buy {
 
     private final int id;
@@ -10,6 +12,8 @@ public class Buy {
     private final float game_price;
     private final int publisher_id;
     private final String publisher_name;
+    private Date expire_date;
+    private int price_discount;
 
     public Buy(int id, int client_id, String client_name, int game_id, String game_name, float game_price, int publisher_id, String publisher_name) {
         this.id = id;
@@ -91,7 +95,7 @@ public class Buy {
      * @return the game
      */
     public Game getGame() {
-        return new Game(game_id, game_name, "", null, game_price, publisher_id, publisher_name);
+        return new Game(game_id, game_name, "", null, game_price, publisher_id, publisher_name, price_discount, expire_date);
     }
 
     /**
