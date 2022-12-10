@@ -35,7 +35,8 @@ public class BuysFitter {
                         (String) resultSet.getObject(5),
                         (float) resultSet.getObject(6),
                         (int) resultSet.getObject(7),
-                        (String) resultSet.getObject(8)
+                        (String) resultSet.getObject(8),                        
+                        (double) resultSet.getObject(9)
                 ));
             }
 

@@ -37,7 +37,8 @@ public class GamesFitter {
                         (int) resultSet.getObject(6),
                         (String) resultSet.getObject(7),
                         (int) resultSet.getObject(8),
-                        (Date) resultSet.getObject(9)
+                        (Date) resultSet.getObject(9),
+                        (double) resultSet.getObject (10)
                 ));
             }
             

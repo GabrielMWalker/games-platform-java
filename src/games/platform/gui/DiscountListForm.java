@@ -2,10 +2,10 @@ package games.platform.gui;
 
 import games.platform.connection.DataBase;
 import games.platform.crud.gui.ClientForm;
-import games.platform.dbModels.Clients;
+import games.platform.dbModels.Discount;
 import games.platform.dbModels.ResultSetTableModel;
 import games.platform.logger.AppLogger;
-import games.platform.models.Client;
+import games.platform.models.Discounts;
 import games.platform.utils.DbGlobal;
 import games.platform.utils.LoggerGlobal;
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ public class DiscountListForm extends javax.swing.JInternalFrame {
             DataBase db = DbGlobal.getDb();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
-            tableModel.setQuery(Clients.getClients());
+            tableModel.setQuery(Discount.getDiscounts());
             table.createDefaultColumnsFromModel();
         } catch (IllegalStateException | SQLException | ClassNotFoundException e) {
             LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
@@ -103,11 +103,11 @@ public class DiscountListForm extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private Client getClientBySelectedRow(int row) {
-        int clientSelectedId = (int) table.getValueAt(row, 0);
-        String clientSelectedName = (String) table.getValueAt(row, 1);
-        float clientSelectedBalance = (float) table.getValueAt(row, 2);
-        return new Client(clientSelectedId, clientSelectedName, clientSelectedBalance);
+    private Discounts getDiscountBySelectedRow(int row) {
+        int discountSelectedGameName = (int) table.getValueAt(row, 0);
+        String discountSelectedName = (String) table.getValueAt(row, 1);
+        float discountSelectedBalance = (float) table.getValueAt(row, 2);
+        return new Discount(clientSelectedId, clientSelectedName, clientSelectedBalance);
     }
 
     private void editClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editClientButtonActionPerformed

@@ -3,7 +3,7 @@ package games.platform.models;
 import java.util.Date;
 
 public class Game {
-    
+
     private final int id;
     private int publisher_id;
     private final String publisher_name;
@@ -13,28 +13,22 @@ public class Game {
     private Date expire_date;
     private float price;
     private int price_discount;
-    
-    public Game(int id, String name, String description, Date releaseDate, float price, int publisher_id, String publisher_name,int price_discount, Date expire_date) {
+    private double final_price;
+
+    public Game(int id, String name, String description, Date releaseDate, float price, int publisher_id, String publisher_name, int price_discount, Date expire_date, double final_price) {
         this.id = id;
         this.publisher_id = publisher_id;
         this.publisher_name = publisher_name;
         this.name = name;
         this.description = description;
         this.releaseDate = releaseDate;
-        this.price = getGameDiscount(price, price_discount);
+        this.price = price;
         this.expire_date = expire_date;
         this.price_discount = price_discount;
-        
+        this.final_price = final_price;
+
     }
-    
-    private float getGameDiscount(float gamePrice, int gameDiscount){
-        Integer discount = gameDiscount;
-        if(discount != null){
-            return gamePrice;
-        }
-        return gamePrice - (gamePrice * (gameDiscount/100));
-    }
-    
+
     /**
      * Get the value of id
      *
@@ -43,7 +37,7 @@ public class Game {
     public int getId() {
         return id;
     }
-    
+
     /**
      * Get the value of name
      *
@@ -70,7 +64,7 @@ public class Game {
     public String getDescription() {
         return description;
     }
-    
+
     /**
      * Set the value of description
      *
@@ -88,7 +82,7 @@ public class Game {
     public Date getReleaseDate() {
         return releaseDate;
     }
-    
+
     /**
      * Set the value of releaseDate
      *
@@ -97,7 +91,7 @@ public class Game {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
-    
+
     /**
      * Get the value of price
      *
@@ -106,7 +100,7 @@ public class Game {
     public float getPrice() {
         return price;
     }
-    
+
     /**
      * Set the value of price
      *
@@ -115,7 +109,7 @@ public class Game {
     public void setPrice(float price) {
         this.price = price;
     }
-    
+
     /**
      * Get the value of publisher_id
      *
@@ -124,7 +118,7 @@ public class Game {
     public int getPublisherId() {
         return publisher_id;
     }
-    
+
     /**
      * Set the value of publisherId
      *
@@ -133,7 +127,7 @@ public class Game {
     public void setPublisherId(int publisher_id) {
         this.publisher_id = publisher_id;
     }
-    
+
     /**
      * Get the value of publisher_name
      *
@@ -157,6 +151,13 @@ public class Game {
 
     public void setPrice_discount(int price_discount) {
         this.price_discount = price_discount;
-    }   
-    
+    }
+
+    public double getFinal_price() {
+        return final_price;
+    }
+
+    public void setFinal_price(double final_price) {
+        this.final_price = final_price;
+    }
 }

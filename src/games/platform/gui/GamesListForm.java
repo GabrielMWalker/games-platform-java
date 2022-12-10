@@ -114,8 +114,11 @@ public class GamesListForm extends javax.swing.JInternalFrame {
         int gameSelectedPublisherId = (int) table.getValueAt(row, 5);
         String gameSelectedPublisherName = (String) table.getValueAt(row, 6);
         int gameSelectedPriceDiscount = (int) table.getValueAt(row, 7);
-        Date gameSelectedExpireDiscount = (Date) table.getValueAt(row, 8);
-        return new Game(gameSelectedId, gameSelectedName, gameSelectedDescription, gameSelectedReleaseDate, gameSelectedPrice, gameSelectedPublisherId, gameSelectedPublisherName, gameSelectedPriceDiscount, gameSelectedExpireDiscount);
+        Date gameSelectedExpireDiscount = (Date) table.getValueAt(row, 8); 
+        System.out.println(table.getValueAt(row, 9));
+        System.out.println(table.getValueAt(row, 9).getClass());
+        double gameSelectedFinalPrice = (double) table.getValueAt(row, 9);
+        return new Game(gameSelectedId, gameSelectedName, gameSelectedDescription, gameSelectedReleaseDate, gameSelectedPrice, gameSelectedPublisherId, gameSelectedPublisherName, gameSelectedPriceDiscount, gameSelectedExpireDiscount, gameSelectedFinalPrice);
     }
 
     private void removeGameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeGameButtonActionPerformed

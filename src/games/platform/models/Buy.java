@@ -14,8 +14,9 @@ public class Buy {
     private final String publisher_name;
     private Date expire_date;
     private int price_discount;
+    private double final_price;
 
-    public Buy(int id, int client_id, String client_name, int game_id, String game_name, float game_price, int publisher_id, String publisher_name) {
+    public Buy(int id, int client_id, String client_name, int game_id, String game_name, float game_price, int publisher_id, String publisher_name, double final_price) {
         this.id = id;
         this.client_id = client_id;
         this.client_name = client_name;
@@ -24,6 +25,7 @@ public class Buy {
         this.game_price = game_price;
         this.publisher_id = publisher_id;
         this.publisher_name = publisher_name;
+        this.final_price = final_price;
     }
 
     /**
@@ -52,7 +54,7 @@ public class Buy {
     public String getClientName() {
         return client_name;
     }
-    
+
     /**
      * Get the client
      *
@@ -61,7 +63,7 @@ public class Buy {
     public Client getClient() {
         return new Client(client_id, client_name, 0);
     }
-    
+
     /**
      * Get the value of game id
      *
@@ -88,14 +90,14 @@ public class Buy {
     public float getGamePrice() {
         return game_price;
     }
-    
+
     /**
      * Get the game
      *
      * @return the game
      */
     public Game getGame() {
-        return new Game(game_id, game_name, "", null, game_price, publisher_id, publisher_name, price_discount, expire_date);
+        return new Game(game_id, game_name, "", null, game_price, publisher_id, publisher_name, price_discount, expire_date, final_price);
     }
 
     /**
@@ -116,4 +118,11 @@ public class Buy {
         return publisher_name;
     }
 
+    public double getFinal_price() {
+        return final_price;
+    }
+
+    public void setFinal_price(double final_price) {
+        this.final_price = final_price;
+    }
 }

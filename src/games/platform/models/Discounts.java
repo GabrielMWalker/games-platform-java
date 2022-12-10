@@ -2,14 +2,14 @@ package games.platform.models;
 
 import java.util.Date;
 
-public class Discount {
+public class Discounts {
 
     private int id;
     private int game_id;
     private float price_discount;
     private Date expire_date;
 
-    public Discount(int id, int game_id, float price_discount, Date expire_date) {
+    public Discounts(int id, int game_id, float price_discount, Date expire_date) {
         this.id = id;
         this.game_id = game_id;
         this.price_discount = price_discount;

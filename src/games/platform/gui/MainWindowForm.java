@@ -40,6 +40,8 @@ public class MainWindowForm extends javax.swing.JFrame {
         buysToXMLMenu = new javax.swing.JMenu();
         buysToXMLMenuItem = new javax.swing.JMenuItem();
         addCashFromFileMenu = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Plataforma de jogos");
@@ -155,6 +157,18 @@ public class MainWindowForm extends javax.swing.JFrame {
 
         menuBar.add(buysToXMLMenu);
 
+        jMenu1.setText("Discount");
+
+        jMenuItem1.setText("List");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DiscountListActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        menuBar.add(jMenu1);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,7 +235,7 @@ public class MainWindowForm extends javax.swing.JFrame {
     }//GEN-LAST:event_createPublisherMenuItemActionPerformed
 
     private void gameCreateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameCreateMenuItemActionPerformed
-        GameForm gameForm = new GameForm(new Game(0, "", "", null, 0, 0, "", 0, new Date()), true);
+        GameForm gameForm = new GameForm(new Game(0, "", "", null, 0, 0, "", 0, new Date(), 0), true);
         mainPanel.add(gameForm);
         mainPanel.setVisible(true);
         gameForm.setVisible(true);
@@ -241,6 +255,14 @@ public class MainWindowForm extends javax.swing.JFrame {
         addCashFromXMLForm.setVisible(true);
     }//GEN-LAST:event_addCashFromFileMenuActionPerformed
 
+    private void DiscountListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiscountListActionPerformed
+        // TODO add your handling code here:DiscountListForm DiscountListForm
+                DiscountListForm discountListForm = new DiscountListForm(mainPanel);
+        mainPanel.add(discountListForm);
+        mainPanel.setVisible(true);
+        discountListForm.setVisible(true);
+    }//GEN-LAST:event_DiscountListActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addCashFromFileMenu;
     private javax.swing.JMenu buysToXMLMenu;
@@ -252,6 +274,8 @@ public class MainWindowForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem gameCreateMenuItem;
     private javax.swing.JMenu gamesMenu;
     private javax.swing.JMenuItem gamesMenuItem;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem publishersListMenuItem;

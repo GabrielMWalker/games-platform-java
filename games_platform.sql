@@ -40,7 +40,7 @@ create table discount (
 	id INT NOT NULL	auto_increment,
 	game_id int,
     expire_date Date,
-    price_discount float,
+    price_discount int,
     PRIMARY KEY(id),
     FOREIGN KEY (game_id) REFERENCES game(id)
 );
