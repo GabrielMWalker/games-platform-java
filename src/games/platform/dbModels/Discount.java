@@ -12,9 +12,9 @@ public class Discount {
      * @return all clients
      */
     public static String getDiscounts() {
-        return "SELECT distinct g.name, g.price, d.price_discount, "
+        return "SELECT distinct d.id, d.game_id, g.name, g.price, d.price_discount, "
                 + "CASE WHEN d.price_discount > 0 THEN "
-                + "ROUND(g.price * (d.price_discount/100), 2) "
+                + "ROUND(g.price - (g.price * (d.price_discount/100)), 2) "
                 + "ELSE g.price END as final_price, "
                 + "d.expire_date "
                 + "FROM discount as d "

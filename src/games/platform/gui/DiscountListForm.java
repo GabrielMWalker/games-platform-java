@@ -1,7 +1,7 @@
 package games.platform.gui;
 
 import games.platform.connection.DataBase;
-import games.platform.crud.gui.ClientForm;
+import games.platform.crud.gui.DiscountForm;
 import games.platform.dbModels.Discount;
 import games.platform.dbModels.ResultSetTableModel;
 import games.platform.logger.AppLogger;
@@ -9,6 +9,7 @@ import games.platform.models.Discounts;
 import games.platform.utils.DbGlobal;
 import games.platform.utils.LoggerGlobal;
 import java.sql.SQLException;
+import java.util.Date;
 import javax.swing.JDesktopPane;
 
 public class DiscountListForm extends javax.swing.JInternalFrame {
@@ -104,29 +105,30 @@ public class DiscountListForm extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private Discounts getDiscountBySelectedRow(int row) {
-        int discountSelectedGameName = (int) table.getValueAt(row, 0);
-        String discountSelectedName = (String) table.getValueAt(row, 1);
-        float discountSelectedBalance = (float) table.getValueAt(row, 2);
-        return new Discount(clientSelectedId, clientSelectedName, clientSelectedBalance);
+        int discountSelectedId = (int) table.getValueAt(row, 0);
+        int discountSelectedGameId = (int) table.getValueAt(row, 1);
+        int discountSelected = (int) table.getValueAt(row, 4);
+        Date discountSelectedDate = (Date) table.getValueAt(row, 6);
+        return new Discounts(discountSelectedId, discountSelectedGameId, discountSelected, discountSelectedDate);
     }
 
     private void editClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editClientButtonActionPerformed
         int selectedRow = table.getSelectedRow();
         if (selectedRow >= 0) {
-            ClientForm clientUpdateForm = new ClientForm(getClientBySelectedRow(selectedRow), false);
-            mainPanel.add(clientUpdateForm);
+            DiscountForm discountUpdateForm = new DiscountForm(getDiscountBySelectedRow(selectedRow), false);
+            mainPanel.add(discountUpdateForm);
             mainPanel.setVisible(true);
-            clientUpdateForm.setVisible(true);
+            discountUpdateForm.setVisible(true);
         }
     }//GEN-LAST:event_editClientButtonActionPerformed
 
     private void removeClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClientButtonActionPerformed
         int selectedRow = table.getSelectedRow();
         if (selectedRow >= 0) {
-            Client clientToRemove = getClientBySelectedRow(selectedRow);
-            games.platform.crud.models.Client.removeClient(clientToRemove, DbGlobal.getDb().getConnection());
+            Discounts discountToRemove = getDiscountBySelectedRow(selectedRow);
+            games.platform.crud.models.Discount.removeDiscount(discountToRemove, DbGlobal.getDb().getConnection());
             try {
-                tableModel.setQuery(Clients.getClients());
+                tableModel.setQuery(Discount.getDiscounts());
             } catch (SQLException | IllegalStateException ex) {
                 LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + ex.getMessage());
             }
