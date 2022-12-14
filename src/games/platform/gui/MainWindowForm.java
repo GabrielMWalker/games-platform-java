@@ -256,8 +256,7 @@ public class MainWindowForm extends javax.swing.JFrame {
     }//GEN-LAST:event_addCashFromFileMenuActionPerformed
 
     private void DiscountListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiscountListActionPerformed
-        // TODO add your handling code here:DiscountListForm DiscountListForm
-                DiscountListForm discountListForm = new DiscountListForm(mainPanel);
+        DiscountListForm discountListForm = new DiscountListForm(mainPanel);
         mainPanel.add(discountListForm);
         mainPanel.setVisible(true);
         discountListForm.setVisible(true);

@@ -14,13 +14,16 @@ import java.sql.SQLException;
 public class ClientActions {
 
     public static String buyOneGame(Client client, Game game, Connection dbConnection) {
-        if (client.getBalance() < game.getPrice()) {
+        if (client.getBalance() < game.getFinal_price()) {
             return ("Cliente não tem saldo suficiente para compra");
         }
         try {
             dbConnection.setAutoCommit(false);
 
-            PreparedStatement balancePdStt = Clients.getClientBalanceDecreaseStatement(client.getId(), game.getPrice(), dbConnection);
+            PreparedStatement balancePdStt = Clients.getClientBalanceDecreaseStatement(client.getId(), (float)game.getFinal_price(), dbConnection);
+            System.out.println(client.getId());
+            System.out.println((float)game.getFinal_price());
+            System.out.println(game.getPrice());
             PreparedStatement buyPdStt = Buys.getBuyStatement(client.getId(), game.getId(), dbConnection);
 
             balancePdStt.executeUpdate();

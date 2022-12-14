@@ -8,9 +8,9 @@ public class Games {
      * @return all games from all publishers
      */
     public static String getGames() {
-        return "SELECT g.id, g.name, g.description, g.release_date, g.price, g.publisher_id, p.name as publisher_name, d.price_discount , d.expire_date, "
+        return "SELECT g.id, g.name, g.description, g.release_date, g.price, g.publisher_id, p.name as publisher_name, d.price_discount , d.expire_date,  "
                 + "CASE WHEN d.price_discount > 0 THEN "
-                + "ROUND(g.price * (d.price_discount/100), 2) "
+                + "ROUND(g.price - (g.price * (d.price_discount/100)), 2) "
                 + "ELSE g.price END as final_price "
                 + "FROM game as g "
                 + "INNER JOIN publisher as p ON (g.publisher_id = p.id) "
